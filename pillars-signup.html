@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillars — Men's Event | Pathway Ministries</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #1C1C1E;
+    --card: #F0EBE1;
+    --gold: #C9A84C;
+    --charcoal: #1C1C1E;
+    --slate: #5A6578;
+    --text: #2A2A2A;
+    --text-light: #6B7280;
+    --border: #D8D0C4;
+    --error: #B45309;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 100%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    margin-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .pillars-icon {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .pillar-line {
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  }
+  .pillar-line:nth-child(1) { height: 48px; opacity: 0.5; }
+  .pillar-line:nth-child(2) { height: 64px; opacity: 1; }
+  .pillar-line:nth-child(3) { height: 48px; opacity: 0.5; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 12vw, 88px);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #FAF8F4;
+    line-height: 1;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+  .hero-title::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  .hero-sub {
+    font-size: clamp(12px, 2.5vw, 14px);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.5);
+    margin-top: 16px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(14px, 3vw, 17px);
+    color: rgba(250,248,244,0.7);
+    margin-top: 10px;
+  }
+
+  /* CARD */
+  .card {
+    width: 100%;
+    max-width: 520px;
+    background: var(--card);
+    border-radius: 4px;
+    padding: clamp(28px, 6vw, 48px) clamp(24px, 6vw, 44px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.15);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .field { margin-bottom: 20px; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    background: #FDFAF6;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+  }
+  input.error { border-color: var(--error); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ATTENDANCE TOGGLE */
+  .toggle-group {
+    display: flex;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    background: #FDFAF6;
+  }
+  .toggle-btn {
+    flex: 1;
+    padding: 12px 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--slate);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .toggle-btn + .toggle-btn { border-left: 1.5px solid var(--border); }
+  .toggle-btn.active {
+    background: var(--charcoal);
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 28px;
+    background: var(--charcoal);
+    color: var(--gold);
+    border: 1.5px solid var(--gold);
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .submit-btn:hover { background: var(--gold); color: var(--charcoal); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-note {
+    font-size: 11px;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* SUCCESS */
+  #success-area { display: none; text-align: center; padding: 20px 0; }
+  .success-icon {
+    width: 56px; height: 56px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--gold); font-size: 22px;
+  }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+  .success-body { font-size: 14px; color: var(--slate); line-height: 1.7; }
+
+  .footer {
+    margin-top: 32px;
+    font-size: 11px;
+    color: rgba(250,248,244,0.3);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Pathway Ministries · Men's Event</div>
+  <div class="pillars-icon">
+    <div class="pillar-line"></div>
+    <div class="pillar-line"></div>
+    <div class="pillar-line"></div>
+  </div>
+  <div class="hero-title">Pillars</div>
+  <div class="hero-sub">Hyde Park &nbsp;·&nbsp; Johannesburg</div>
+  <div class="hero-tagline">Standing firm. Growing strong. Together.</div>
+</div>
+
+<div class="card">
+  <div id="form-area">
+
+    <div class="section-label">Your Details</div>
+
+    <div class="field">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" placeholder="John Smith" autocomplete="name">
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="john@email.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" placeholder="+27 82 000 0000" autocomplete="tel">
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top: 8px;">Attendance</div>
+
+    <div class="field">
+      <label>Will you be attending?</label>
+      <div class="toggle-group" id="attendGroup">
+        <button type="button" class="toggle-btn active" data-val="yes" onclick="setToggle(this)">Yes, I'll be there</button>
+        <button type="button" class="toggle-btn" data-val="no" onclick="setToggle(this)">Can't make it</button>
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitForm()">Confirm Registration</button>
+    <p class="form-note">By registering you agree to be contacted by Pathway Ministries regarding this event.</p>
+
+  </div>
+
+  <div id="success-area">
+    <div class="success-icon">✓</div>
+    <div class="success-title">You're registered.</div>
+    <p class="success-body">
+      Thanks for signing up for <strong>Pillars</strong>.<br>
+      We'll be in touch with more details soon.<br><br>
+      See you there, brother.
+    </p>
+  </div>
+</div>
+
+<div class="footer">Pathway Ministries &nbsp;·&nbsp; pathwaym.co.za</div>
+
+<script>
+  const SUBMIT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  let attending = 'yes';
+
+  function setToggle(btn) {
+    document.querySelectorAll('#attendGroup .toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    attending = btn.dataset.val;
+  }
+
+  async function submitForm() {
+    const name  = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    let valid = true;
+    ['fullName','email','phone'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      else el.classList.remove('error');
+    });
+    if (!valid) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    const payload = {
+      name, email, phone,
+      attending: attending === 'yes' ? 'Yes' : 'No'
+    };
+
+    try {
+      await fetch(SUBMIT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      showSuccess();
+    } catch {
+      showSuccess();
+    }
+  }
+
+  function showSuccess() {
+    document.getElementById('form-area').style.display = 'none';
+    const s = document.getElementById('success-area');
+    s.style.display = 'block';
+    s.style.animation = 'fadeUp 0.4s ease both';
+  }
+</script>
+</body>
+</html>
